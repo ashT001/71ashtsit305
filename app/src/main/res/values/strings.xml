@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">71preall</string>
+    <string name="title_activity_create_new_advert">CreateNewAdvert</string>
+    <string name="title_activity_main2">MainActivity2</string>
+</resources>
