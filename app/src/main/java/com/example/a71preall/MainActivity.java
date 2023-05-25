@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button b1;
     Button b2;
+    Button b3;
 
 
 
@@ -38,13 +39,23 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-
         b2 = findViewById(R.id.ViewItemButton);
         b2.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(MainActivity.this, ListItemActivity.class);
+                        startActivity(i);
+                    }
+                }
+        );
+
+        b3 = findViewById(R.id.mapTestButton);
+        b3.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(MainActivity.this, MapsActivity.class);
                         startActivity(i);
                     }
                 }

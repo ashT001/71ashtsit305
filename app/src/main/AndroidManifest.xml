@@ -11,17 +11,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.71preall"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBNBtnpvB3R0CQ7hWEYEGrKTQLY4o8_RVk" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false" />
         <activity
             android:name=".ListItemActivity"
             android:exported="false" />
         <activity
             android:name=".NewAdvertActivity"
             android:exported="false" />
-        <activity
-            android:name=".CreateNewAdvert"
-            android:exported="false"
-            android:label="@string/title_activity_create_new_advert"
-            android:theme="@style/Theme.71preall" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -31,6 +34,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+
 
 </manifest>
