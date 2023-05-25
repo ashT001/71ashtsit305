@@ -2,8 +2,11 @@ package com.example.a71preall;
 
 import static android.content.ContentValues.TAG;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +19,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -49,16 +55,38 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        drawMap();
+
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        LatLng home = new LatLng(-38.155710,144.345960 );
-//        LatLng tree = new LatLng()
+        LatLng sydney = new LatLng(-35.280937, 149.130005);
         mMap.addMarker(new MarkerOptions()
                 .position(sydney)
                 .title("Marker in Sydney"));
-        mMap.addMarker(new MarkerOptions()
-                .position(home));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+    }
+
+    private void drawMap() {
+            DataBaseHelper dataBaseHelper = new DataBaseHelper(MapsActivity.this);
+            List<String> itemList = dataBaseHelper.getAllLocations();
+
+        for (String s: itemList
+             ) {
+            String str = s;
+            String[] values = str.split(",");
+
+            String value1 = values[0];
+            String value2 = values[1];
+
+            LatLng sydney = new LatLng(Double.parseDouble(value1), Double.parseDouble(value2));
+            mMap.addMarker(new MarkerOptions()
+                    .position(sydney));
+
+        }
+
+
+
+
+
     }
 }
 

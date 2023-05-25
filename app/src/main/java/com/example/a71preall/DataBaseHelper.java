@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +59,39 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public List<String> getAllLocations() {
+        List<String> returnList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + LOST_AND_FOUND;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if(cursor.moveToFirst()){
+            do {
+                int itemId = cursor.getInt(0);
+                String itemTitle = cursor.getString(1);
+                String itemDescription = cursor.getString(2);
+                String itemDate = cursor.getString(3);
+                String itemLocation = cursor.getString(4);
+                boolean itemIsLost = cursor.getInt(5) == 1 ? true: false;
+
+                String newString = new String(itemLocation);
+                returnList.add(newString);
+
+
+            } while (cursor.moveToNext());
+        }
+        else{
+            //ERR
+        }
+
+        cursor.close();
+        db.close();
+        return returnList;
+
+    }
 
         public List<Item> getAllItems() {
         List<Item> returnList = new ArrayList<>();
